@@ -19,7 +19,7 @@
 
 ## インストール
 
-    npm install textlint-rule-for-creation
+    npm install @doujinreviewers/textlint-rule-for-creation
 
 ## 使い方
 
@@ -28,7 +28,7 @@
 ```json
 {
     "rules": {
-        "for-creation": true
+        "@doujinreviewers/textlint-rule-for-creation": true
     }
 }
 ```
@@ -36,7 +36,7 @@
 コマンドラインで使う
 
 ```
-textlint --rule for-creation README.md
+textlint --rule @doujinreviewers/textlint-rule-for-creation README.md
 ```
 
 ### Build
