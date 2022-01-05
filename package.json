@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "keywords": [
+    "textlintrule"
+  ],
+  "main": "lib/textlint-rule-for-creation.js",
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "scripts": {
+    "test": "textlint-scripts test",
+    "build": "textlint-scripts build",
+    "prepublish": "npm run --if-present build"
+  },
+  "devDependencies": {
+    "textlint-scripts": "^12.0.2",
+    "textlint-tester": "^12.0.2"
+  },
+  "name": "textlint-rule-for-creation",
+  "directories": {
+    "test": "test"
+  },
+  "author": "同人Reviewers",
+  "license": "MIT",
+  "description": ""
+}
