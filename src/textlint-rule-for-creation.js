@@ -1,17 +1,41 @@
-export default function(context, options = {}) {
-    const {Syntax, RuleError, report, getSource} = context;
+import { createTextlintMatcher } from "morpheme-match-textlint";
+import { tokenize } from "kuromojin";
+
+const loadDictionaries = () => {
+    // unavoidable
+    let dict1 = require('./dict/dict');
+    let dict2 = require('./dict/dict2');
+    return dict1.concat(dict2)
+}
+
+const reporter = (context) => {
+    const { Syntax, RuleError, fixer, report, getSource } = context;
+    const matchAll = createTextlintMatcher({
+        tokenize: tokenize,
+        dictionaries: loadDictionaries()
+    });
     return {
-        [Syntax.Str](node){ // "Str" node
-            const text = getSource(node); // Get text
-            const matches = /bugs/g.exec(text); // Found "bugs"
-            if (!matches) {
-                return;
-            }
-            const indexOfBugs = matches.index;
-            const ruleError = new RuleError("Found bugs.", {
-                index: indexOfBugs // padding of index
+        [Syntax.Str](node) {
+            const text = getSource(node);
+            return matchAll(text).then(results => {
+                results.forEach(result => {
+                    if (result.expected) {
+                        report(node, new RuleError(result.message, {
+                            index: result.index,
+                            fix: fixer.replaceTextRange(result.range, result.expected)
+                        }));
+                    } else {
+                        report(node, new RuleError(result.message, {
+                            index: result.index
+                        }));
+                    }
+                });
             });
-            report(node, ruleError);
         }
-    }
+    };
+};
+
+export default {
+    linter: reporter,
+    fixer: reporter
 };

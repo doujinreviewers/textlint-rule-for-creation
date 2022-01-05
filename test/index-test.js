@@ -1,44 +1,22 @@
 "use strict";
 import TextLintTester from "textlint-tester";
 const tester = new TextLintTester();
-// rule
-import rule from "../src/index";
-// ruleName, rule, { valid, invalid }
-tester.run("rule", rule, {
+import rule from "../src/textlint-rule-for-creation";
+tester.run("textlint-rule-for-creation", rule, {
     valid: [
-        // no problem
-        "text"
+        { text: "text" },
+        { text: "長さは可変だ" },
+        { text: "人は1人では育つことができない" }
     ],
     invalid: [
-        // single match
         {
-            text: "It is bugs.",
+            text: "これは省略することが可能だが、省略しない。",
             errors: [
                 {
-                    message: "Found bugs.",
-                    line: 1,
-                    column: 7
+                    message: `"することが可能だ"は冗長な表現です。"することが可能"を省き簡潔な表現にすると文章が明瞭になります。`,
+                    index: 5
                 }
             ]
         },
-        // multiple match
-        {
-            text: `It has many bugs.
-
-One more bugs`,
-            errors: [
-                {
-                    message: "Found bugs.",
-                    line: 1,
-                    column: 13
-                },
-                {
-                    message: "Found bugs.",
-                    line: 3,
-                    column: 10
-                }
-            ]
-        },
-
     ]
 });

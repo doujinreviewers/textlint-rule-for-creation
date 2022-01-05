@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.1",
   "keywords": [
     "textlintrule"
   ],
@@ -8,6 +8,14 @@
     "lib/",
     "src/"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doujinreviewers/textlint-rule-for-creation.git"
+  },
+  "homepage": "https://github.com/doujinreviewers/textlint-rule-for-creation",
+  "bugs": {
+    "url": "https://github.com/doujinreviewers/textlint-rule-for-creation/issues"
+  },
   "scripts": {
     "test": "textlint-scripts test",
     "build": "textlint-scripts build",
@@ -17,11 +25,12 @@
     "textlint-scripts": "^12.0.2",
     "textlint-tester": "^12.0.2"
   },
-  "name": "textlint-rule-for-creation",
-  "directories": {
-    "test": "test"
-  },
+  "name": "@doujinreviewers/textlint-rule-for-creation",
   "author": "同人Reviewers",
   "license": "MIT",
-  "description": ""
+  "description": "日本語の明確な誤りのみを検出するクリエイター向けtextlintルール",
+  "dependencies": {
+    "kuromojin": "^3.0.0",
+    "morpheme-match-textlint": "^2.0.6"
+  }
 }
