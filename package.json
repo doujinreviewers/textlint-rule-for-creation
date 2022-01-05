@@ -29,6 +29,9 @@
   "author": "同人Reviewers",
   "license": "MIT",
   "description": "日本語の明確な誤りのみを検出するクリエイター向けtextlintルール",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "kuromojin": "^3.0.0",
     "morpheme-match-textlint": "^2.0.6"
