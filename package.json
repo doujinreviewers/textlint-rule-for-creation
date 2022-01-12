@@ -33,6 +33,8 @@
     "access": "public"
   },
   "dependencies": {
+    "@koozaki/romaji-conv": "^2.0.16",
+    "js-hira-kata-romanize": "^1.0.5",
     "kuromojin": "^3.0.0",
     "morpheme-match-textlint": "^2.0.6"
   }
