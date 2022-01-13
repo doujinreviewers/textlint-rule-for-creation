@@ -75,3 +75,5 @@ MIT
   [textlint-rule-ja-no-abusage](https://github.com/textlint-ja/textlint-rule-ja-no-abusage)
 
   [textlint-rule-no-insert-re](https://github.com/textlint-ja/textlint-rule-no-insert-re)
+
+  [textlint-rule-no-insert-dropping-sa](https://github.com/textlint-ja/textlint-rule-no-insert-dropping-sa)
