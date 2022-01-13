@@ -4,8 +4,8 @@ import EnhancedEngine from "./enhanced-engine";
 
 const loadDictionaries = () => {
   // unavoidable
-  let dict1 = require('./dict/retasu');
-  let dict2 = require('./dict/miss');
+  let dict1 = require('./dict/gozidatuzi');
+  let dict2 = require('./dict/retasu');
   return dict1.concat(dict2)
 }
 

@@ -72,5 +72,6 @@ MIT
   [textlint 12リリース、ブラウザで動くtextlint editorをベータリリース](https://efcl.info/2021/05/27/textlint-12-editor/)
 
 ### ルール
-  []()
-  []()
+  [textlint-rule-ja-no-abusage](https://github.com/textlint-ja/textlint-rule-ja-no-abusage)
+
+  [textlint-rule-no-insert-re](https://github.com/textlint-ja/textlint-rule-no-insert-re)
