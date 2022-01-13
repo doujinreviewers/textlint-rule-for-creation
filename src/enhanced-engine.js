@@ -1,19 +1,8 @@
-const Romanizer = require('js-hira-kata-romanize');
-const romajiConv = require('@koozaki/romaji-conv');
 const arrow = require('./dict/arrow');
 
 class EnhancedEngine {
 
   constructor() {
-    this.romanizer = new Romanizer({
-      mapping: Romanizer.MAPPING_KUNREI,
-      chouon: Romanizer.CHOUON_CIRCUMFLEX,
-      upper: Romanizer.UPPER_NONE
-    });
-  }
-
-  romanize(hiraganaOrKatakana){
-    return this.romanizer.romanize(hiraganaOrKatakana);
   }
 
   async checkRetasu(tokenizer, text){
