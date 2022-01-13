@@ -8,7 +8,8 @@ const loadDictionaries = () => {
   let dict2 = require('./dict/gozidatuzi');
   let dict3 = require('./dict/retasu');
   let dict4 = require('./dict/sanuki');
-  return dict1.concat(dict2, dict3, dict4);
+  let dict5 = require('./dict/saire');
+  return dict1.concat(dict2, dict3, dict4, dict5);
 }
 
 const reporter = (context) => {
