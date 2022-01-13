@@ -4,9 +4,10 @@ import EnhancedEngine from "./enhanced-engine";
 
 const loadDictionaries = () => {
   // unavoidable
-  let dict1 = require('./dict/gozidatuzi');
-  let dict2 = require('./dict/retasu');
-  return dict1.concat(dict2)
+  let dict1 = require('./dict/zyosi');
+  let dict2 = require('./dict/gozidatuzi');
+  let dict3 = require('./dict/retasu');
+  return dict1.concat(dict2, dict3);
 }
 
 const reporter = (context) => {
