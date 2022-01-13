@@ -6,7 +6,9 @@ const tester = new TextLintTester();
 const retasu = require("./retasu");
 const gozidatuzi = require("./gozidatuzi");
 const zyosi = require("./zyosi");
+const sanuki = require("./sanuki");
 
 tester.run("retasu", rule, retasu);
 tester.run("gozidatuzi", rule, gozidatuzi);
 tester.run("zyosi", rule, zyosi);
+tester.run("sanuki", rule, sanuki);

@@ -10,8 +10,8 @@ module.exports = [
     ]
   },
   {
-    message: '接続助詞と接続詞の連続',
-    tokens: [
+    "message": '接続助詞と接続詞の連続',
+    "tokens": [
       {
         "pos": "助詞",
         "pos_detail_1": "接続助詞",
@@ -21,8 +21,8 @@ module.exports = [
     ]
   },
   {
-    message: '接続助詞と助動詞の連続',
-    tokens: [
+    "message": '接続助詞と助動詞の連続',
+    "tokens": [
       {
         "pos": "助詞",
         "pos_detail_1": "接続助詞",
