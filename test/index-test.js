@@ -3,20 +3,80 @@ import TextLintTester from "textlint-tester";
 const tester = new TextLintTester();
 import rule from "../src/textlint-rule-for-creation";
 tester.run("textlint-rule-for-creation", rule, {
-    valid: [
-        { text: "text" },
-        { text: "長さは可変だ" },
-        { text: "人は1人では育つことができない" }
-    ],
-    invalid: [
+  valid: [
+    { text: "付けれる" },
+    { text: "出れる" },
+    { text: "見れる" },
+    { text: "食べれる" },
+    { text: "来れる" },
+    { text: "着れる" },
+    { text: "起きれる" },
+    { text: "決めれる" },
+    { text: "開けれる" },
+    { text: "開けれない" },
+    { text: "付けれない" },
+    { text: "出れない" },
+    { text: "見れない" },
+    { text: "食べれない" },
+    { text: "来れない" },
+    { text: "着れない" },
+    { text: "起きれない" },
+    { text: "決めれない" },
+  ],
+  invalid: [
+    {
+      text: "書けれる",
+      errors: [
         {
-            text: "これは省略することが可能だが、省略しない。",
-            errors: [
-                {
-                    message: `"することが可能だ"は冗長な表現です。"することが可能"を省き簡潔な表現にすると文章が明瞭になります。`,
-                    index: 5
-                }
-            ]
-        },
-    ]
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+    {
+      text: "読めれる",
+      errors: [
+        {
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+    {
+      text: "行けれる",
+      errors: [
+        {
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+    {
+      text: "飛べれる",
+      errors: [
+        {
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+    {
+      text: "飛ばせれない",
+      errors: [
+        {
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+    {
+      text: "書けれない",
+      errors: [
+        {
+          message: "れ足す言葉の可能性があります",
+          index: 0
+        }
+      ]
+    },
+  ]
 });

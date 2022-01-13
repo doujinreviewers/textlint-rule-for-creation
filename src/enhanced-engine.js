@@ -1,10 +1,12 @@
 const Romanizer = require('js-hira-kata-romanize');
 const romajiConv = require('@koozaki/romaji-conv');
+const arrow = require('./dict/arrow');
 
 class EnhancedEngine {
 
   constructor() {
     this.romanizer = new Romanizer({
+      mapping: Romanizer.MAPPING_KUNREI,
       chouon: Romanizer.CHOUON_CIRCUMFLEX,
       upper: Romanizer.UPPER_NONE
     });
@@ -15,28 +17,19 @@ class EnhancedEngine {
   }
 
   async checkRetasu(tokenizer, text){
+    if(/れ$/.test(text)){
+      text += "る";
+    }
     let tokens = await tokenizer(text);
-    let result = await tokens.reduce(async (prev, current) => {
-      if (this.isTargetVerb(prev) && this.isReruWord(current)) {
-        let reading_roma = this.romanize(prev.reading);
-        let roma = reading_roma.slice(0, -1) + "ar" + reading_roma.slice(-1) + this.romanize(current.reading);
-        let token = await tokenizer(romajiConv(roma).toHiragana());
-        if (!/五段/.test(token[0].conjugated_type) && /rere|rara/.test(roma)) {
-          // 恐らくれ足す言葉
-          return true;
-        }
+    let meirei = await tokenizer(tokens[0].surface_form + "。");
+    if(meirei[0].conjugated_form == "命令ｅ" || /五段/.test(meirei[0].conjugated_type)){
+      // 「れる」を抜いても命令形で意味が通じるか、最初の文字が五段活用動詞になると多分れ足す言葉
+      if(!arrow.jidousi_tadousi.includes(meirei[0].surface_form)){
+        // 許可リストにもない
+        return true;
       }
-      return false;
-    });
-    return result;
-  }
-
-  isTargetVerb(token) {
-    return token.pos == "動詞" && token.conjugated_type == "一段";
-  }
-
-  isReruWord(token) {
-    return token.pos == "動詞" && token.pos_detail_1 == "接尾" && token.basic_form == "れる";
+    }
+    return false;
   }
 
 }
