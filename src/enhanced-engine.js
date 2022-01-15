@@ -22,14 +22,17 @@ class EnhancedEngine {
   }
 
   async checkZyosi(tokenizer, result, fulltext){
-    if(arrow.zyosi.includes(fulltext.slice(result.range[0],result.range[1]))){
+    let piece = fulltext.slice(result.range[0], result.range[1]);
+    if(arrow.zyosi.includes(piece)){
       return false;
     }
     let fulltokens = await tokenizer(fulltext);
     let tokens = [];
     fulltokens.reduce((prev, current) => {
       if (prev.pos == "助詞" && current.pos == "助詞" && (current.pos_detail_2 == "一般" || current.pos_detail_2 == "*")) {
-        tokens = [prev, current];
+        if(prev.surface_form + current.surface_form == piece){
+          tokens = [prev, current];
+        }
       }
       return current;
     });
