@@ -24,8 +24,8 @@ class EnhancedEngine {
   async checkZyosi(tokenizer, text){
     let tokens = await tokenizer(text);
     if(!/終助詞/.test(tokens[1].pos_detail_1)
-      || !(tokens[0].surface_form == "のみ" && /格助詞/.test(tokens[1].pos_detail_1))
-      || !/連体化/.test(tokens[1].pos_detail_1)
+      && !(tokens[0].surface_form == "のみ" && /格助詞/.test(tokens[1].pos_detail_1))
+      && !/連体化/.test(tokens[1].pos_detail_1)
       ){
       if(!arrow.zyosi.includes(tokens[0].surface_form + tokens[1].surface_form)){
         return true;
