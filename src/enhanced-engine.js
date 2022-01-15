@@ -24,7 +24,7 @@ class EnhancedEngine {
   async checkZyosi(tokenizer, result, fulltext){
     let piece = fulltext.slice(result.range[0], result.range[1]);
     if(arrow.zyosi.includes(piece)){
-      return false;
+      // return false;
     }
     let fulltokens = await tokenizer(fulltext);
     let tokens = [];
@@ -39,13 +39,18 @@ class EnhancedEngine {
     if(new RegExp(tokens[0].surface_form.repeat(3) + "|" + tokens[0].surface_form.repeat(2) + "[～〜ー!！]").test(fulltext)){
       return false;
     }
+    if(tokens[0].surface_form == tokens[1].surface_form){
+      return true;
+    }
     if((/終助詞/.test(tokens[0].pos_detail_1) || /終助詞/.test(tokens[1].pos_detail_1))
       || /接続助詞/.test(tokens[0].pos_detail_1)
       || (tokens[0].surface_form == "のみ" && /格助詞/.test(tokens[1].pos_detail_1))
       || /連体化/.test(tokens[1].pos_detail_1)
       || ((/格助詞/.test(tokens[0].pos_detail_1) && /係助詞/.test(tokens[1].pos_detail_1)) && !/[をが]/.test(tokens[0].surface_form))
+      || (/特殊/.test(tokens[0].pos_detail_1) || /特殊/.test(tokens[1].pos_detail_1))
+      || (/引用/.test(tokens[0].pos_detail_2) && /接続助詞/.test(tokens[1].pos_detail_1))
       ){
-      return false;
+      // return false;
     }
     return true;
   }

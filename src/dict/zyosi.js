@@ -1,12 +1,62 @@
 module.exports = [
+  // {
+  //   "message": "助詞の連続",
+  //   "tokens": [
+  //     {
+  //       "pos": "助詞",
+  //     },{
+  //       "pos": "助詞",
+  //       "pos_detail_2": ["一般", "*"]//引用や連語ならスルー
+  //     }
+  //   ]
+  // },
   {
     "message": "助詞の連続",
     "tokens": [
       {
         "pos": "助詞",
+        "pos_detail_1": "係助詞",
       },{
         "pos": "助詞",
-        "pos_detail_2": ["一般", "*"]//引用や連語ならスルー
+        "pos_detail_1": "係助詞",
+      }
+    ]
+  },
+  {
+    "message": "助詞の連続",
+    "tokens": [
+      {
+        "surface_form": ["が", "を"],
+        "pos": "助詞",
+        "pos_detail_1": "格助詞",
+      },{
+        "pos": "助詞",
+        "pos_detail_1": "係助詞",
+      }
+    ]
+  },
+  {
+    "message": "助詞の連続",
+    "tokens": [
+      {
+        "surface_form": ["が", "を", "で", "に", "へ", "より"],
+        "pos": "助詞",
+        "pos_detail_1": "格助詞",
+      },{
+        "pos": "助詞",
+        "pos_detail_1": "助詞",
+      }
+    ]
+  },
+  {
+    "message": "助詞の連続",
+    "tokens": [
+      {
+        "pos": "助詞",
+        "pos_detail_1": "格助詞",
+      },{
+        "pos": "助詞",
+        "pos_detail_1": "格助詞",
       }
     ]
   },
