@@ -21,17 +21,28 @@ class EnhancedEngine {
     return false;
   }
 
-  async checkZyosi(tokenizer, text){
-    let tokens = await tokenizer(text);
-    if(!/終助詞/.test(tokens[1].pos_detail_1)
-      && !(tokens[0].surface_form == "のみ" && /格助詞/.test(tokens[1].pos_detail_1))
-      && !/連体化/.test(tokens[1].pos_detail_1)
-      ){
-      if(!arrow.zyosi.includes(tokens[0].surface_form + tokens[1].surface_form)){
-        return true;
-      }
+  async checkZyosi(tokenizer, result, fulltext){
+    if(arrow.zyosi.includes(fulltext.slice(result.range[0],result.range[1]))){
+      return false;
     }
-    return false;
+    let fulltokens = await tokenizer(fulltext);
+    let tokens = [];
+    fulltokens.reduce((prev, current) => {
+      if (prev.pos == "助詞" && current.pos == "助詞" && (current.pos_detail_2 == "一般" || current.pos_detail_2 == "*")) {
+        tokens = [prev, current];
+      }
+      return current;
+    });
+    if(new RegExp(tokens[0].surface_form.repeat(3) + "|" + tokens[0].surface_form.repeat(2) + "[～〜ー!！]").test(fulltext)){
+      return false;
+    }
+    if((/終助詞/.test(tokens[0].pos_detail_1) || /終助詞/.test(tokens[1].pos_detail_1))
+      || (tokens[0].surface_form == "のみ" && /格助詞/.test(tokens[1].pos_detail_1))
+      || /連体化/.test(tokens[1].pos_detail_1)
+      ){
+      return false;
+    }
+    return true;
   }
 
 }

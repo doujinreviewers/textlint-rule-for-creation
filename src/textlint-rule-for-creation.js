@@ -30,7 +30,7 @@ const reporter = (context) => {
               continue;
             }
           }else if(result.message == "助詞の連続"){
-            if(!(await engine.checkZyosi(tokenize, text.slice(result.range[0])))){
+            if(!(await engine.checkZyosi(tokenize, result, text))){
               continue;
             }
           }
