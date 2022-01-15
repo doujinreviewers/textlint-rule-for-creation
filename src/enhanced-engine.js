@@ -29,7 +29,7 @@ class EnhancedEngine {
     let fulltokens = await tokenizer(fulltext);
     let tokens = [];
     fulltokens.reduce((prev, current) => {
-      if (prev.pos == "助詞" && current.pos == "助詞" && (current.pos_detail_2 == "一般" || current.pos_detail_2 == "*")) {
+      if (prev.pos == "助詞" && current.pos == "助詞") {
         if(prev.surface_form + current.surface_form == piece){
           tokens = [prev, current];
         }
