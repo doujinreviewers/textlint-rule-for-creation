@@ -24,7 +24,7 @@ class EnhancedEngine {
   async checkZyosi(tokenizer, result, fulltext){
     let piece = fulltext.slice(result.range[0], result.range[1]);
     if(arrow.zyosi.includes(piece)){
-      // return false;
+      return false;
     }
     let fulltokens = await tokenizer(fulltext);
     let tokens = [];
