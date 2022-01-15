@@ -29,6 +29,10 @@ const reporter = (context) => {
             if(!(await engine.checkRetasu(tokenize, text.slice(result.range[0],result.range[1])))){
               continue;
             }
+          }else if(result.message == "助詞の連続"){
+            if(!(await engine.checkZyosi(tokenize, text.slice(result.range[0])))){
+              continue;
+            }
           }
           if (result.expected) {
             report(node, new RuleError(result.message, {
